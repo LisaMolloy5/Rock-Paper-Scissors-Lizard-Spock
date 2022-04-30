@@ -12,10 +12,10 @@ playerScore = 0
 tieScore = 0
 gameOptions = ["Rock", "Paper", "Scissors", "Lizard", "Spock"]
 
-def playGame(playerChoice, computerChoice):
+def gameComboChecker(playerChoice, computerChoice):
     """
     Checks for game winner depending on which choice the player and computer 
-    choose.
+    choose. Providing different game combinations.
     """
     if (playerChoice == "Rock" and computerChoice == "Scissors"):
         print("Woo! You Won :D")
@@ -47,7 +47,7 @@ def playGame(playerChoice, computerChoice):
     elif (playerChoice == "Spock" and computerChoice == "Scissors"):
         print("Woo! You Won :D")
         return "player"
-    if (playerChoice == "Rock" and computerChoice == "Paper"):
+    elif (playerChoice == "Rock" and computerChoice == "Paper"):
         print("Aw you lost :(")
         return "Computer"
     elif (playerChoice == "Rock" and computerChoice == "Spock"):
@@ -80,3 +80,31 @@ def playGame(playerChoice, computerChoice):
     else:
         print("It's a tie, try again!")
         return "tie"
+
+### Game play loop to make game out of 3
+while(playerScore != 3 and computerScore != 3):
+
+    while True:
+        playerChoice = input("\nChoose Rock, Paper, Scissors, Lizard or Spock: ")
+        if(playerChoice == "Rock" or playerChoice == "Paper" or playerChoice == "Scissors" or playerChoice == "Lizard" or playerChoice == "Spock"):
+            break
+        else:
+            print("Invalid choice. Try again.")
+    
+    computerChoice = random.choice(gameOptions)
+
+    print("Your choice:", playerChoice)
+    print("Computers chice:", computerChoice)
+    result = gameComboChecker(playerChoice, computerChoice)
+    if (result == "Player"):
+        playerScore += 1
+    elif (result == "Computer"):
+        computerScore += 1
+    else:
+        tieScore += 1
+    print("Your score: ", playerScore, "Computer: ", computerScore, "Ties: ", tieScore)
+
+print("Game over! Thank you for playing :D")
+
+
+
